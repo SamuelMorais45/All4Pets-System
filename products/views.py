@@ -19,3 +19,7 @@ class ProductsViewSet(viewsets.ModelViewSet):
 
     search_fields = ['nome', 'categoria', 'codigo']
     ordering_fields = ['preco', 'data_validade', 'nome']
+    
+    def perform_destroy(self, instance):
+            instance.ativo = False
+            instance.save()
