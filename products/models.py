@@ -1,6 +1,6 @@
 from django.db import models
 
-class Produto(models.Model):
+class Products(models.Model):
     codigo = models.CharField(max_length=20, unique= True)
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True)
