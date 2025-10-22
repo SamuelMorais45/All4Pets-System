@@ -23,3 +23,12 @@ class ProductsViewSet(viewsets.ModelViewSet):
     def perform_destroy(self, instance):
             instance.ativo = False
             instance.save()
+
+def products_list(request):
+    return render(request, 'products/products.html')
+
+def products_create(request):
+    return render(request, 'products/create.html')
+
+def products_edit(request, id):
+    return render(request, 'products/edit.html', {'id': id})

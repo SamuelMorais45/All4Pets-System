@@ -132,5 +132,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # All4Pets settings
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = 'login'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/products/'
 LOGOUT_REDIRECT_URL = 'login'
