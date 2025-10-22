@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Novo Produto</title>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
     <script>
         async function criarProduto(event) {
             event.preventDefault();
@@ -29,13 +29,9 @@
 </head>
 <body>
     <h1>Criar Produto</h1>
-    <form onsubmit="criarProduto(event)">
-        <label>Nome</label>
-        <input id="nome" required>
-        <label>Preço</label>
-        <input id="preco" type="number" step="0.01" required>
-        <label>Estoque</label>
-        <input id="estoque" type="number" required>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit">Salvar</button>
     </form>
     <a href="/products/">⬅ Voltar</a>

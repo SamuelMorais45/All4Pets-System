@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Produtos</title>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
     <script src="{% static 'products/main.js' %}" defer></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
     <main>
         <section>
             <h2>Lista de Produtos</h2>
-            <input type="text" id="filterInput" placeholder="Filtrar por nome...">
+            <input type="text" id="filterInput" placeholder="Filtrar por nome">
             <table id="produtosTable">
                 <thead>
                     <tr>

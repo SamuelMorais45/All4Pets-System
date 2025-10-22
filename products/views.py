@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Products 
 from .serializers import ProductsSerializer
 from .permissions import IsAdminGroupOrReadOnly
+from .forms import ProductForm
 
 class ProductsViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.filter(ativo=True)
@@ -25,10 +26,19 @@ class ProductsViewSet(viewsets.ModelViewSet):
             instance.save()
 
 def products_list(request):
-    return render(request, 'products/products.html')
+    produtos = Products.objects.filter(ativo=True)
+    return render(request, 'products/products.html', {'produtos': produtos})
 
 def products_create(request):
-    return render(request, 'products/create.html')
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products_list') 
+    else:
+        form = ProductForm()
+    
+    return render(request, 'products/create.html', {'form': form})
 
 def products_edit(request, id):
     return render(request, 'products/edit.html', {'id': id})
