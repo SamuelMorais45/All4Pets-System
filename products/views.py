@@ -9,7 +9,7 @@ from .forms import ProductForm
 class ProductsViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.filter(ativo=True)
     serializer_class = ProductsSerializer
-    permission_classes = [IsAdminGroupOrReadOnly]
+   # permission_classes = [IsAdminGroupOrReadOnly]#
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
 
     filterset_fields = {
