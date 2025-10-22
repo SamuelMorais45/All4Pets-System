@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Produtos</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="{% static 'products/main.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Produtos</h1>
+        <nav>
+            <a href="{% url 'produtos_create' %}">Novo Produto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Lista de Produtos</h2>
+            <input type="text" id="filterInput" placeholder="Filtrar por nome...">
+            <table id="produtosTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                        <th>Ativo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
