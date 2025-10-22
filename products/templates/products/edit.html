@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script>
+        const produtoId = "{{ id }}";
+
+        async function carregarProduto() {
+            const response = await fetch(`/api/products/${produtoId}/`);
+            const produto = await response.json();
+            document.getElementById("nome").value = produto.nome;
+            document.getElementById("preco").value = produto.preco;
+            document.getElementById("estoque").value = produto.estoque;
+        }
+
+        async function atualizarProduto(event) {
+            event.preventDefault();
+            const nome = document.getElementById("nome").value;
+            const preco = parseFloat(document.getElementById("preco").value);
+            const estoque = parseInt(document.getElementById("estoque").value);
+
+            const response = await fetch(`/api/products/${produtoId}/`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, preco, estoque }),
+            });
+
+            if (response.ok) {
+                alert("Produto atualizado!");
+                window.location.href = "/products/";
+            } else {
+                alert("Erro ao atualizar produto.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", carregarProduto);
+    </script>
+</head>
+<body>
+    <h1>Editar Produto</h1>
+    <form onsubmit="atualizarProduto(event)">
+        <label>Nome</label>
+        <input id="nome" required>
+        <label>Preço</label>
+        <input id="preco" type="number" step="0.01" required>
+        <label>Estoque</label>
+        <input id="estoque" type="number" required>
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/products/">⬅ Voltar</a>
+</body>
+</html>
