@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         produtos.forEach(produto => {
             const tr = document.createElement("tr");
             
-            // CORREÇÃO: Conversão de preço e uso do toFixed(2)
             const precoNumerico = parseFloat(produto.preco); 
             
             tr.innerHTML = `
@@ -28,13 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ADICIONADO: Verificação if(filtro) para garantir que o listener só seja anexado se o elemento existir
     if (filtro) {
         filtro.addEventListener("input", async () => {
             const nome = filtro.value.trim();
-            tabela.innerHTML = ""; // Limpa a tabela imediatamente
+            tabela.innerHTML = ""; 
 
-            // Lógica de Pesquisa: Faz a busca somente se houver algo digitado
             if (nome.length > 0) {
                 const response = await fetch(`/api/products/?search=${encodeURIComponent(nome)}`);
                 const produtos = await response.json();
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 produtos.forEach(produto => {
                     const tr = document.createElement("tr");
                     
-                    // CORREÇÃO: Conversão de preço e uso do toFixed(2)
                     const precoNumerico = parseFloat(produto.preco); 
                     
                     tr.innerHTML = `
@@ -59,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     tabela.appendChild(tr);
                 });
             } else {
-                // Lógica de Limpeza: Se o campo de busca está vazio, recarrega todos os produtos
                 carregarProdutos(); 
             }
         });

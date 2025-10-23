@@ -10,7 +10,7 @@ class ProductsViewSet(viewsets.ModelViewSet):
     
     
     serializer_class = ProductsSerializer
-   # permission_classes = [IsAdminGroupOrReadOnly]#
+    permission_classes = [IsAdminGroupOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
 
     filterset_fields = {
@@ -22,9 +22,7 @@ class ProductsViewSet(viewsets.ModelViewSet):
     search_fields = ['nome', 'categoria', 'codigo', 'data_validade']
     ordering_fields = ['preco', 'data_validade', 'nome']
     
-    # ADICIONADO: O método get_queryset para definir a queryset base
     def get_queryset(self):
-        # Esta é a queryset inicial. O SearchFilter será aplicado em cima dela.
         return Products.objects.filter(ativo=True)
     
     def perform_destroy(self, instance):
