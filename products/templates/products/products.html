@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Produtos</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'products/main.js' %}" defer></script>
 </head>
 <body>
@@ -17,12 +17,13 @@
 
     <main>
         <section>
+            <div class="container"></div>
             <h2>Lista de Produtos</h2>
             <input type="text" id="filterInput" placeholder="Filtrar por nome">
             <table id="produtosTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Codigo</th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Estoque</th>
@@ -32,6 +33,7 @@
                 </thead>
                 <tbody></tbody>
             </table>
+        </div>
         </section>
     </main>
 </body>

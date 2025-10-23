@@ -6,7 +6,7 @@ from products.views import ProductsViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'products', ProductsViewSet)
+router.register(r'products', ProductsViewSet, basename='product')
 
 urlpatterns = [
     path("admin/", admin.site.urls),

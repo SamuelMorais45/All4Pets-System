@@ -7,7 +7,8 @@ from .permissions import IsAdminGroupOrReadOnly
 from .forms import ProductForm
 
 class ProductsViewSet(viewsets.ModelViewSet):
-    queryset = Products.objects.filter(ativo=True)
+    
+    
     serializer_class = ProductsSerializer
    # permission_classes = [IsAdminGroupOrReadOnly]#
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -18,8 +19,13 @@ class ProductsViewSet(viewsets.ModelViewSet):
         'categoria': ['exact'],
     }
 
-    search_fields = ['nome', 'categoria', 'codigo']
+    search_fields = ['nome', 'categoria', 'codigo', 'data_validade']
     ordering_fields = ['preco', 'data_validade', 'nome']
+    
+    # ADICIONADO: O método get_queryset para definir a queryset base
+    def get_queryset(self):
+        # Esta é a queryset inicial. O SearchFilter será aplicado em cima dela.
+        return Products.objects.filter(ativo=True)
     
     def perform_destroy(self, instance):
             instance.ativo = False

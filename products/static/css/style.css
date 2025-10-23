@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    background-color: #006d6d;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #008c8c;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #00b3b3;
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+a {
+    color: #00e0e0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+button, .btn {
+    background-color: #009999;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .btn:hover {
+    background-color: #00bfbf;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #017e7e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+thead {
+    background-color: #009999;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #028a8a;
+}
+
+tr:hover {
+    background-color: #00a3a3;
+    transition: background-color 0.2s;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 60%;
+    background-color: #017e7e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+form label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border: 2px solid #00cccc;
+    background-color: #e6ffff;
+    color: #000;
+}
+
+form button {
+    align-self: flex-start;
+    background-color: #00b3b3;
+}
+
+form button:hover {
+    background-color: #00cccc;
+}
+
+input[type="text"] {
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem;
+    width: 200px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border: 2px solid #00cccc;
+}
+
+p, small {
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    form {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+}

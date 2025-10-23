@@ -10,4 +10,4 @@ class ProductsSerializer(serializers.ModelSerializer):
             'estoque', 'categoria', 'data_validade', 'ativo',
             'criado_em', 'atualizado_em'
         ]
-        read_only_fields = ['id', 'criado_em', 'atualizado_em', 'ativo']
+        read_only_fields = ['id', 'criado_em', 'atualizado_em']
