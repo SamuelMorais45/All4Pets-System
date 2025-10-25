@@ -4,37 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Produtos</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'products/main.js' %}" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Produtos</h1>
-        <nav>
-            <a href="{% url 'products_create' %}">Novo Produto</a>
-        </nav>
-    </header>
-
     <main>
         <section>
-            <div class="container"></div>
-            <h2>Lista de Produtos</h2>
-            <input type="text" id="filterInput" placeholder="Filtrar por nome">
-            <table id="produtosTable">
-                <thead>
-                    <tr>
-                        <th>Codigo</th>
-                        <th>Nome</th>
-                        <th>Preço</th>
-                        <th>Estoque</th>
-                        <th>Ativo</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        </section>
+            <div class="container"> 
+                {% if is_admin %}
+                    <a href="{% url 'products_create' %}" class="btn btn-primary">Novo Produto</a> 
+                {% endif %}
+                <h2>Lista de Produtos</h2>
+                <input type="text" id="filterInput" placeholder="Filtrar por nome">
+                
+                <script>const IS_ADMIN = {{ is_admin|lower }};</script>
+                
+                <table id="produtosTable">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Data de Validade</th>
+                            <th>Ativo</th>
+                           {% if is_admin %}
+                            <th>Ações</th>  {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            
+            </div> </section>
     </main>
 </body>
 </html>

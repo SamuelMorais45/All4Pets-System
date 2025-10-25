@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Products 
 from .serializers import ProductsSerializer
@@ -30,8 +30,13 @@ class ProductsViewSet(viewsets.ModelViewSet):
             instance.save()
 
 def products_list(request):
+    is_admin = request.user.groups.filter(name = 'Administrador').exists()
     produtos = Products.objects.filter(ativo=True)
-    return render(request, 'products/products.html', {'produtos': produtos})
+    context ={
+        'produtos': produtos,
+        'is_admin': is_admin
+    }
+    return render(request, 'products/products.html', context)
 
 def products_create(request):
     if request.method == 'POST':

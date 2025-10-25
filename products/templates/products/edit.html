@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Editar Produto</title>
    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <meta name="csrf-token" content="{{ csrf_token }}">
     <script>
         const produtoId = "{{ id }}";
 
@@ -40,10 +41,15 @@
                 }
             }
 
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
             const response = await fetch(`/api/products/${produtoId}/`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
+            method: "PATCH",
+            headers: { 
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify(payload),
             });
 
             if (response.ok) {
