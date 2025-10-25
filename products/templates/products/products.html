@@ -14,6 +14,7 @@
             <div class="container"> 
                 {% if is_admin %}
                     <a href="{% url 'products_create' %}" class="btn btn-primary">Novo Produto</a> 
+                    <a href="{% url 'products_inactive_list' %}" class="btn btn-primary">Restaura Produtos</a>
                 {% endif %}
                 <h2>Lista de Produtos</h2>
                 <input type="text" id="filterInput" placeholder="Filtrar por nome">
