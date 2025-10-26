@@ -31,7 +31,6 @@ function initActiveProductsPage(csrfToken) {
                 <td>R$ ${precoNumerico.toFixed(2)}</td>
                 <td>${estoqueNumerico}</td>
                 <td>${produto.data_validade}</td>
-                <td>${produto.ativo ? "Ativo" : "Inativo"}</td>
                 ${acoesTd}
             `;
             tabela.appendChild(tr);
@@ -74,6 +73,7 @@ function initActiveProductsPage(csrfToken) {
 
     window.desativarProduto = async (id) => {
         if (confirm("Deseja realmente desativar este produto?")) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             const response = await fetch(`/api/products/${id}/`, {
                 method: "PATCH",
                 headers: { 
@@ -113,12 +113,15 @@ function initInactiveProductsPage(csrfToken) {
         produtos.forEach(produto => {
             const tr = document.createElement("tr");
             const precoNumerico = parseFloat(produto.preco) || 0;
+            const estoqueNumerico = produto.estoque || 0;
             
             tr.innerHTML = `
                 <td class="text-center"><input type="checkbox" class="product-checkbox" value="${produto.id}"></td>
                 <td>${produto.codigo}</td>
                 <td>${produto.nome}</td>
                 <td>R$ ${precoNumerico.toFixed(2)}</td>
+                <td>${estoqueNumerico}</td>
+                <td>${produto.data_validade}</td>
                 <td>${produto.ativo ? "Ativo" : "Inativo"}</td>
             `;
             tabelaBody.appendChild(tr);
