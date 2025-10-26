@@ -20,6 +20,10 @@ class Products(models.Model):
     atualizado_em = models.DateTimeField(auto_now= True)
 
     class Meta:
+        
+        verbose_name = "Product" 
+        verbose_name_plural = "Products" 
         ordering = ['-criado_em']
+
     def __str__(self):
         return f"{self.codigo} - {self.nome}"
