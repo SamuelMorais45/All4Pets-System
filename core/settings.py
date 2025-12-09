@@ -32,16 +32,20 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    'corsheaders',
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "accounts",
+    "services",
+    "pets",
     "rest_framework",
     'django_filters',
     'products',
-    'corsheaders',
+
+
 
 ]
 
@@ -136,6 +140,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/products/'
+
 LOGOUT_REDIRECT_URL = 'login'
 
 #CORS settings
@@ -144,3 +149,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",  
 ]
 CORS_ALLOW_CREDENTIALS = True
+LOGOUT_REDIRECT_URL = 'login'
+
+
