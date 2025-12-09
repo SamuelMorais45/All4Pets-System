@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Products 
 from .serializers import ProductsSerializer
 from .permissions import IsAdminGroupOrReadOnly
+from rest_framework.permissions import AllowAny
 from .forms import ProductForm
 
 def is_admin_check(user):
@@ -13,7 +14,8 @@ def is_admin_check(user):
 class ProductsViewSet(viewsets.ModelViewSet):
     
     serializer_class = ProductsSerializer
-    permission_classes = [IsAdminGroupOrReadOnly]
+    permission_classes = [AllowAny]
+    lookup_field = 'id'
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
 
     filterset_fields = {
@@ -24,6 +26,7 @@ class ProductsViewSet(viewsets.ModelViewSet):
 
     search_fields = ['nome', 'categoria', 'codigo', 'data_validade']
     ordering_fields = ['preco', 'data_validade', 'nome']
+
     
     def get_queryset(self):
         queryset = Products.objects.all()
